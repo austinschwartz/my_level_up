@@ -1,4 +1,4 @@
-Feature: Activation Code
+Feature: Faulty Bomb Code Detection (Bad Path)
   In order to test faulty inputs
   As an evil genius
   I don't want people entering faulty bomb codes 
