@@ -56,7 +56,7 @@ class DinoDex
     end
   end
 
-  def string_matches?(row, k, v)
+  def row_string_matches?(row, k, v)
     if k == :diet
       return false unless diet_matches?(row, v)
     elsif row.key?(k) && !row[k].include?(v)
@@ -65,11 +65,15 @@ class DinoDex
     true
   end
 
+  def row_range_matches?(row, k, v)
+    return v.include?(row[k].to_i)
+  end
+
   def row_matches_filter?(row, k, v)
     if v.is_a? String
-      return string_matches?(row, k, v)
+      return row_string_matches?(row, k, v)
     else
-      return false unless v.include?(row[k].to_i)
+      return row_range_matches?(row, k, v)
     end
     true
   end
