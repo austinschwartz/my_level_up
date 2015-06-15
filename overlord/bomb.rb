@@ -5,6 +5,8 @@ class Bomb
   class ActivateError < StandardError; end
   class DeactivateError < StandardError; end
 
+  TRIES_BEFORE_DETONATION = 3
+
   def initialize
     @status = :not_booted
   end
@@ -29,7 +31,7 @@ class Bomb
   def activate(code)
     if code.to_s == @acode && !exploded? then
       @status = :active
-      @deactivation_count = 3
+      @deactivation_count = TRIES_BEFORE_DETONATION
     else
       raise ActivateError, exploded? ? 'Bomb has already exploded' : 'Incorrect activation code'
     end
@@ -38,6 +40,7 @@ class Bomb
   def deactivate(code)
     if code.to_s == @dcode && !exploded? then
       @status = :not_active
+      @detonation_count = TRIES_BEFORE_DETONATION
     else
       unless exploded? then
         @deactivation_count -= 1
