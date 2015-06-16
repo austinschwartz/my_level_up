@@ -29,3 +29,37 @@
 1. Inputting badly formatted codes into overlord was bad path. Testing correct codes was happy path. Inputting the wrong codes in order to detonate the bomb was sad path. I think all of my data science tests were happy path.
 2. To-Do: add tests to the data science exercise 
 
+### Strategies for better testing
+1. You start with writing view code, taking the perspective of a user viewing the website. This allows you to visualize what the final product will look like even before you start writing the underlying logic. This makes it easier to create minimal functions and implementations.
+2. Lets say that we're writing an addition to a blogging website, that adds a calendar and a list of tags for whatever blog posts. If one was so inclined to write the code for this first, they might completely overcomplicate it, bringing in other frameworks, or introducing unnecessary features into the website. Writing the tests first, including tests for each new feature that you want, will end up with the codebase having exactly the minimal code needed.
+
+### Tautological Testing
+1. Lets say we have a Calculator module with sum and modulus functions.
+
+module Calculator
+  def self.sum(a, b)
+    a + b
+  end 
+
+  def self.mod(a, b)
+    a - (b * (a/b))
+  end
+end 
+
+A test like this would be tautological
+
+describe Calculator do
+  it 'should return the correct sum' do
+    expect { Calculator.sum(6, 10) }
+    .to eq(6 + 10)
+  end
+  
+  it 'should return the correct modulus' do
+    expect { Calculator.mod(17, 7) } do
+    .to eq(17 % 10)
+  end
+end
+
+The example is vey basic, but in this test, we are testing the Calculator functions with their equivalent code, which in effect, doesn't test anything. We should be comparing the functions with the correct value (mod(17, 7) == 10)
+
+
