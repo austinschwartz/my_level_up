@@ -35,6 +35,6 @@ class TestDinoDex < Minitest::Test
   end
 
   def test_facts
-    assert_equal "Name: Albertonykus\n - period: Early Cretaceous\n - continent: North America\n - diet: Insectivore\n - walking: Biped\n - description: Earliest known Alvarezsaurid.\n\nGenus: Paralititan\n - period: Cretaceous\n - carnivore: No\n - weight: 120000\n - walking: Quadruped", @dinodex.clear.filter(Period: "Cretaceous").filter(Diet: "Insectivore").facts
+    assert_equal "Name: Albertonykus\n - period: Early Cretaceous\n - continent: North America\n - diet: Insectivore\n - walking: Biped\n - description: Earliest known Alvarezsaurid.\n\nGenus: Paralititan\n - period: Cretaceous\n - carnivore: No\n - weight: 120000\n - walking: Quadruped", @dinodex.clear.filter(Period: "Cretaceous").filter(Diet: "Insectivore").to_facts
   end
 end

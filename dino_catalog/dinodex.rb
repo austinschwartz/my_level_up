@@ -96,7 +96,7 @@ class DinoDex
     line
   end
 
-  def facts
+  def to_facts
     fact_list = []
     @csvs.each do |csv|
       csv.each do |dino|

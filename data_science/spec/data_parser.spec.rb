@@ -5,6 +5,11 @@ describe DSParser do
     expect { DSParser.new('data/bad_json.json') }
     .to raise_error
   end
+  
+  it 'should throw an error on incorrectly formatted json' do
+    expect { DSParser.new('data/incorrect_json.json') }
+    .to raise_error
+  end
 
   it 'should return correctly formatted data' do
     expect { DSParser.new('data/data_mock.json').data }
